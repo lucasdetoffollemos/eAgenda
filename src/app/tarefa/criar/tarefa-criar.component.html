@@ -1,0 +1,41 @@
+<h1>{{titulo}}</h1>
+<hr>
+
+
+<form  [formGroup]="cadastroForm" (ngSubmit)="adicionarFuncionario()">
+
+    <label for="titulo">Titulo</label>
+    <div>
+        <input id="titulo" type="text" placeholder="Titulo" formControlName ="titulo">
+    </div>
+
+    <label for="prioridade">Prioridade</label>
+    <div>
+        <select id="prioridade" formControlName="prioridade">
+            <option value="0">Baixa</option>
+            <option value="1">Normal</option>
+            <option value="2">Baixa</option>
+            
+        </select>
+    </div>
+
+    <label for="dataCriacao">Data Criação</label>
+    <div>
+        <input id="dataCriacao" type="date" placeholder="Data Criação" formControlName ="dataCriacao">
+    </div>
+
+    <label for="dataConclusao">Data Conclusão</label>
+    <div>
+        <input id="dataConclusao" type="date" placeholder="Data Criação" formControlName ="dataConclusao">
+    </div>
+
+    <label for="percentual">Percentual</label>
+    <div>
+        <input id="percentual" type="number" placeholder="Percentual" formControlName ="percentual">
+    </div>
+
+    <div>
+        <button id = "registrar" type ="submit">Registrar</button>
+    </div>
+    
+</form>
