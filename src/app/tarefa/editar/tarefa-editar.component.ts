@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
 import { Tarefa } from 'src/app/shared/model/Tarefa';
+import { TarefaService } from '../services/tarefa.service';
 
 @Component({
   selector: 'app-tarefa-editar',
@@ -21,7 +22,7 @@ export class TarefaEditarComponent implements OnInit {
   prioridades: any[];
 
 
-  constructor(private _ActivatedRoute: ActivatedRoute) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private servico : TarefaService) {
    }
 
   ngOnInit(): void {
@@ -42,11 +43,13 @@ export class TarefaEditarComponent implements OnInit {
   }
 
   editarTarefa(){
-    console.log(this.cadastroForm.value)
+    this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
+    this.servico.editarTarefa(this.tarefa)
+
   }
 
   obterTarefa(){
-    this.tarefa = new Tarefa(1, "Tarefa 1", 1, new Date('2013/5/9'), new Date('2013/10/9'), 70);
+    this.tarefa = this.servico.obterTarefa(this.id)
   }
 
 }

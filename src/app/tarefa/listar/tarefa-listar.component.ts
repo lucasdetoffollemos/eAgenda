@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
 import { Tarefa } from 'src/app/shared/model/Tarefa';
+import { TarefaService } from '../services/tarefa.service';
 
 @Component({
   selector: 'app-tarefa-listar',
@@ -11,18 +12,14 @@ export class TarefaListarComponent implements OnInit {
   titulo: string = "Lista Tarefas"
   listaTarefas: Tarefa[] = []
 
-  constructor() { }
+  constructor(private servico : TarefaService) { }
 
   ngOnInit(): void {
       this.obterLista()
   }
 
   obterLista() {
-      this.listaTarefas.push(new Tarefa(1, "Tarefa", 1, new Date(2013, 5, 9), new Date(2013, 10, 9), 50))
-      this.listaTarefas.push(new Tarefa(1, "Tarefa", 2, new Date(2013, 5, 9), new Date(2013, 10, 9), 50))
-      this.listaTarefas.push(new Tarefa(1, "Tarefa", 1, new Date(2013, 5, 9), new Date(2013, 10, 9), 50))
-      this.listaTarefas.push(new Tarefa(1, "Tarefa", 0, new Date(2013, 5, 9), new Date(2013, 10, 9), 50))
-      this.listaTarefas.push(new Tarefa(1, "Tarefa", 1, new Date(2013, 5, 9), new Date(2013, 10, 9), 50))
+      this.listaTarefas = this.servico.obterTarefas()
   }
 
   convertePrioridade(prioridade: number) : string{

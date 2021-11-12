@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
+import { Tarefa } from 'src/app/shared/model/Tarefa';
+import { TarefaService } from '../services/tarefa.service';
 
 
 @Component({
@@ -12,11 +14,13 @@ export class TarefaCriarComponent implements OnInit {
 
   titulo: string = "Cadastro de Tarefa"
   cadastroForm: FormGroup
+  tarefa : Tarefa
 
   tipos = prioridadeType
   prioridades: any[]
 
-  constructor() { 
+  constructor(private servico : TarefaService) { 
+    
   }
 
   ngOnInit(): void {
@@ -32,8 +36,12 @@ export class TarefaCriarComponent implements OnInit {
     })
   }
 
-  adicionarFuncionario(){
-    console.log(this.cadastroForm.value)
+  adicionarTarefa(){
+   
+    this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
+    this.servico.adicionarTarefa(this.tarefa)
+
+    this.cadastroForm.reset()
   }
   
 }
