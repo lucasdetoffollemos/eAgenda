@@ -12,9 +12,9 @@
     <label for="prioridade">Prioridade</label>
     <div>
         <select id="prioridade" formControlName="prioridade">
-            <option value="0">Baixa</option>
-            <option value="1">Normal</option>
-            <option value="2">Baixa</option>
+            <option *ngFor="let prioridade of prioridades" value={{prioridade}}>
+                {{tipos[prioridade]}}
+            </option>
         </select>
     </div>
 

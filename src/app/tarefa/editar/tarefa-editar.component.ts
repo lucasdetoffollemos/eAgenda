@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Tarefa } from 'src/app/shared/Tarefa';
+import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
+import { Tarefa } from 'src/app/shared/model/Tarefa';
 
 @Component({
   selector: 'app-tarefa-editar',
@@ -16,11 +17,16 @@ export class TarefaEditarComponent implements OnInit {
   tarefa: Tarefa
   id: any
 
+  tipos = prioridadeType 
+  prioridades: any[];
+
 
   constructor(private _ActivatedRoute: ActivatedRoute) {
    }
 
   ngOnInit(): void {
+
+    this.prioridades = Object.keys(this.tipos).filter(t => !isNaN(Number(t)))
 
     this.id = this._ActivatedRoute.snapshot.paramMap.get("id")
     console.log(this.id)
