@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
 import { ITarefaService } from 'src/app/shared/interfaces/ITarefaService';
 import { Tarefa } from 'src/app/shared/model/Tarefa';
@@ -20,7 +21,7 @@ export class TarefaCriarComponent implements OnInit {
   tipos = prioridadeType
   prioridades: any[]
 
-  constructor(@Inject('ITarefaServiceToken') private servico: ITarefaService) { 
+  constructor(private router:Router, @Inject('ITarefaServiceToken') private servico: ITarefaService) { 
     
   }
 
@@ -43,6 +44,12 @@ export class TarefaCriarComponent implements OnInit {
     this.servico.adicionarTarefa(this.tarefa)
 
     this.cadastroForm.reset()
+
+    this.router.navigate(['tarefa/listar'])
   }
   
+
+  cancelar(){
+    this.router.navigate(['tarefa/listar'])
+  }
 }
