@@ -44,7 +44,7 @@ export class TarefaEditarComponent implements OnInit {
 
   editarTarefa(){
     this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
-    this.servico.editarTarefa(this.tarefa)
+    this.servico.atualizarTarefa(this.tarefa)
 
   }
 

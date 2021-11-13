@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
+import { ITarefaService } from 'src/app/shared/interfaces/ITarefaService';
 import { Tarefa } from 'src/app/shared/model/Tarefa';
 import { TarefaService } from '../services/tarefa.service';
 
@@ -12,7 +13,7 @@ export class TarefaListarComponent implements OnInit {
   titulo: string = "Lista Tarefas"
   listaTarefas: Tarefa[] = []
 
-  constructor(private servico : TarefaService) { }
+  constructor(@Inject('IFuncionarioServiceToken') private servico: ITarefaService) { }
 
   ngOnInit(): void {
       this.obterLista()
