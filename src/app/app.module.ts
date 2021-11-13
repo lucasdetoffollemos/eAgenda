@@ -10,6 +10,8 @@ import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
 import { LocalStorageTarefaService } from './tarefa/services/local-storage-tarefa.service';
 import { ExemploTarefaGuard } from './shared/guards/exemplo-tarefa.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpTarefaService } from './tarefa/services/http-tarefa.service';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [
     {provide: 'ITarefaServiceToken', useClass: LocalStorageTarefaService},
+    {provide: 'IHttpTarefaServiceToken', useClass: HttpTarefaService},
     ExemploTarefaGuard
   ],
   bootstrap: [AppComponent]
