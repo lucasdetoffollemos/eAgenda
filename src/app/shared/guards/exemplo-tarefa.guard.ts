@@ -11,7 +11,7 @@ export class ExemploTarefaGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       console.log('401 - Guard não habilitado')
-      return true;
+      return false;
   }
   
 }
