@@ -22,15 +22,35 @@ export class LocalStorageTarefaService implements ITarefaService{
     this.listaTarefas.push(tarefa)
     this.storage.setItem(this.key, JSON.stringify(this.listaTarefas))
   }
+
   obterTarefa(tarefaId: number): Tarefa {
-    throw new Error('Method not implemented.');
+    var tarefa : any;
+
+    this.listaTarefas.some(function (el){
+      if(el.id == tarefaId){
+        tarefa = el
+      }
+    })
+
+    return tarefa;
   }
   atualizarTarefa(tarefa: Tarefa): void {
-    throw new Error('Method not implemented.');
+    this.listaTarefas.some(function(el){
+      if(el.id == tarefa.id){
+        el.titulo = tarefa.titulo
+        el.prioridade = tarefa.prioridade
+        el.percentual = tarefa.percentual
+        el.dataCriacao = tarefa.dataCriacao
+        el.dataConclusao = tarefa.dataConclusao
+      }
+    })
   }
+
+
   obterTarefas(): Tarefa[] {
     return this.listaTarefas;
   }
+  
   excluirTarefa(tarefaId: number): void {
     throw new Error('Method not implemented.');
   }

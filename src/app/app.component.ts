@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eAgenda';
-  tarefaSelecionada = 5
+  registroSelecionado: number
 }
