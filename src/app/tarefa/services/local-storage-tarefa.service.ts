@@ -51,8 +51,24 @@ export class LocalStorageTarefaService implements ITarefaService{
     return this.listaTarefas;
   }
   
+  //melhorar esse metodo
   excluirTarefa(tarefaId: number): void {
-    throw new Error('Method not implemented.');
+
+    var index: number = -1;
+    this.listaTarefas.some(function(el, i){
+      if(el.id == tarefaId){
+        index = i
+        
+      }
+    })
+
+    if(index == -1){
+      console.log('Nenhuma tarefa com este id. Id ' + tarefaId)
+    }
+    else{
+      this.listaTarefas.splice(index, 1)
+      this.storage.setItem(this.key, JSON.stringify(this.listaTarefas))
+    }
   }
 
   private obterId(): number{

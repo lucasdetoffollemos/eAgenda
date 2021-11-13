@@ -1,18 +1,20 @@
+
+<div class="container main-container">
 <h1>{{titulo}}</h1>
 <hr>
 
 
 <form  [formGroup]="cadastroForm" (ngSubmit)="adicionarTarefa()">
 
-    <label for="titulo">Titulo</label>
+    <label class="control-label" for="titulo">Titulo</label>
     <div>
-        <input id="titulo" type="text" placeholder="Titulo" formControlName ="titulo">
+        <input class="form-control" id="titulo" type="text" placeholder="Titulo" formControlName ="titulo">
     </div>
 
-    <label for="prioridade">Prioridade</label>
+    <label class="control-label" for="prioridade">Prioridade</label>
     <div>
 
-        <select id="prioridade" formControlName="prioridade">
+        <select class="form-select" id="prioridade" formControlName="prioridade">
            <option *ngFor="let prioridade of prioridades" value={{prioridade}}>
                {{tipos[prioridade]}}
            </option>
@@ -20,24 +22,26 @@
         </select>
     </div>
 
-    <label for="dataCriacao">Data Criação</label>
+    <label class="control-label" for="dataCriacao">Data Criação</label>
     <div>
-        <input id="dataCriacao" type="date" placeholder="Data Criação" formControlName ="dataCriacao">
+        <input class="form-control" id="dataCriacao" type="date" placeholder="Data Criação" formControlName ="dataCriacao">
     </div>
 
-    <label for="dataConclusao">Data Conclusão</label>
+    <label class="control-label" for="dataConclusao">Data Conclusão</label>
     <div>
-        <input id="dataConclusao" type="date" placeholder="Data Criação" formControlName ="dataConclusao">
+        <input class="form-control" id="dataConclusao" type="date" placeholder="Data Criação" formControlName ="dataConclusao">
     </div>
 
-    <label for="percentual">Percentual</label>
+    <label class="control-label" for="percentual">Percentual</label>
     <div>
-        <input id="percentual" type="number" placeholder="Percentual" formControlName ="percentual">
+        <input class="form-control" id="percentual" type="number" placeholder="Percentual" formControlName ="percentual">
     </div>
-
+    <br>
     <div>
-        <button id = "registrar" type ="submit">Registrar</button>
-        <button id = "cancelar" type ="button" (click)="cancelar()">Cancelar</button>
+        <button class="btn btn-success" id = "registrar" type ="submit">Registrar</button>
+        <button class="btn btn-danger" id = "cancelar" type ="button" (click)="cancelar()">Cancelar</button>
     </div>
     
 </form>
+
+</div>

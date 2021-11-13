@@ -349,13 +349,20 @@
       </svg>
       <span>Editar Tarefa</span>
     </button>
+
+    <button class="card card-small" tabindex="0"[disabled]="!registroSelecionado" (click)="abrirConfirmacao(modalExclusao)">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+      <span>Excluir Tarefa</span>
+    </button>
   </div>
 
   <div>
     <div>
-      <label for="idRegistro">ID para edição ou exclusão:</label>
+      <label class="control-label" for="idRegistro">ID para edição ou exclusão:</label>
       <div>
-        <input id="idRegistro" type="text" placeholder="ID Registro" [(ngModel)]="registroSelecionado" />
+        <input class="form-control" id="idRegistro" type="text" placeholder="ID Registro" [(ngModel)]="registroSelecionado" />
       </div>
     </div>
   </div>
@@ -363,3 +370,17 @@
 </div>
 
 <router-outlet></router-outlet>
+
+<ng-template #modalExclusao let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Excluir Tarefa</h4>
+  </div>
+  <div class="modal-body">
+    Deseja realmente excluir essa Tarefa?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Excluir')">Excluir</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Cancelar')">Cancelar</button>
+  </div>
+
+</ng-template>

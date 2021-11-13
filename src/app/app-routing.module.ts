@@ -6,8 +6,8 @@ import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar.component';
 
 const routes: Routes = [
-                        { path: 'tarefa/criar', component: TarefaCriarComponent, canActivate: [ExemploTarefaGuard] },
-                        {path: 'tarefa/listar', component: TarefaListarComponent, canActivate: [ExemploTarefaGuard]},
+                        { path: 'tarefa/criar', component: TarefaCriarComponent },//canActivate: [ExemploTarefaGuard] 
+                        {path: 'tarefa/listar', component: TarefaListarComponent}, //canActivate: [ExemploTarefaGuard]
                         {path: 'tarefa/editar/:id', component: TarefaEditarComponent},
                         { path: '', redirectTo: '/', pathMatch: 'full' }
                       ];
