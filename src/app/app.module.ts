@@ -8,6 +8,7 @@ import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar.component';
 import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
 import { LocalStorageTarefaService } from './tarefa/services/local-storage-tarefa.service';
+import { ExemploTarefaGuard } from './shared/guards/exemplo-tarefa.guard';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LocalStorageTarefaService } from './tarefa/services/local-storage-taref
     ReactiveFormsModule
   ],
   providers: [
-    {provide: 'ITarefaServiceToken', useClass: LocalStorageTarefaService}
+    {provide: 'ITarefaServiceToken', useClass: LocalStorageTarefaService},
+    ExemploTarefaGuard
   ],
   bootstrap: [AppComponent]
 })
