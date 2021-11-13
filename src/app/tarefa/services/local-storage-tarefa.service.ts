@@ -29,7 +29,7 @@ export class LocalStorageTarefaService implements ITarefaService{
     throw new Error('Method not implemented.');
   }
   obterTarefas(): Tarefa[] {
-    throw new Error('Method not implemented.');
+    return this.listaTarefas;
   }
   excluirTarefa(tarefaId: number): void {
     throw new Error('Method not implemented.');

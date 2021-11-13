@@ -18,8 +18,8 @@
             <td>{{tarefa.id}}</td>
             <td>{{tarefa.titulo}}</td>
             <td>{{convertePrioridade(tarefa.prioridade)}}</td>
-            <td>{{tarefa.dataCriacao.toLocaleDateString()}}</td>
-            <td>{{tarefa.dataConclusao.toLocaleDateString()}}</td>
+            <td>{{formatarData(tarefa.dataCriacao)}}</td>
+            <td>{{formatarData(tarefa.dataConclusao)}}</td>
             <td>{{tarefa.percentual}}</td>
         </tr>
     </tbody>

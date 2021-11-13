@@ -13,7 +13,7 @@ export class TarefaListarComponent implements OnInit {
   titulo: string = "Lista Tarefas"
   listaTarefas: Tarefa[] = []
 
-  constructor(@Inject('IFuncionarioServiceToken') private servico: ITarefaService) { }
+  constructor(@Inject('ITarefaServiceToken') private servico: ITarefaService) { }
 
   ngOnInit(): void {
       this.obterLista()
@@ -27,6 +27,10 @@ export class TarefaListarComponent implements OnInit {
 
    return prioridadeType[prioridade]
 
+  }
+
+  formatarData(data:Date):string{
+    return new Date(data).toLocaleDateString()
   }
 
 }
