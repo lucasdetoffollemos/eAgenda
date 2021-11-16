@@ -5,6 +5,7 @@ import { IHttpTarefaService } from 'src/app/shared/interfaces/IHttpTarefaService
 import { TarefaCreateViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaCreateTarefaViewModel';
 import { TarefaListViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaListViewModel';
 import { TarefaEditViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaEditViewModel';
+import { TarefaDetailsViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaDetailsViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,8 @@ export class HttpTarefaService implements IHttpTarefaService{
     return this.http.get<TarefaListViewModel[]>(this.apiUrl)
   }
 
-
-  obterTarefa(tarefaId: number): Observable<TarefaEditViewModel> {
-    throw new Error('Method not implemented.');
+  obterTarefa(tarefaId: number): Observable<TarefaDetailsViewModel> {
+    return this.http.get<TarefaDetailsViewModel>(this.apiUrl+"/"+tarefaId)
   }
   
 

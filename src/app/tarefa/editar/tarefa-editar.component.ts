@@ -2,8 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { prioridadeType } from 'src/app/shared/enums/prioridadeEnum';
+import { IHttpTarefaService } from 'src/app/shared/interfaces/IHttpTarefaService';
 import { ITarefaService } from 'src/app/shared/interfaces/ITarefaService';
 import { Tarefa } from 'src/app/shared/model/Tarefa';
+import { TarefaDetailsViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaDetailsViewModel';
+import { TarefaEditViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaEditViewModel';
 import { TarefaService } from '../services/tarefa.service';
 
 @Component({
@@ -16,14 +19,14 @@ export class TarefaEditarComponent implements OnInit {
 
   titulo: string = "Editar Tarefa" 
   cadastroForm: FormGroup
-  tarefa: Tarefa
+  tarefa: TarefaEditViewModel
   id: any
 
   tipos = prioridadeType 
   prioridades: any[];
 
 
-  constructor(private router:Router, private _ActivatedRoute: ActivatedRoute, @Inject('ITarefaServiceToken') private servico: ITarefaService) {
+  constructor(private router:Router, private _ActivatedRoute: ActivatedRoute, @Inject('IHttpTarefaServiceToken') private servico: IHttpTarefaService) {
    }
 
   ngOnInit(): void {
@@ -32,31 +35,46 @@ export class TarefaEditarComponent implements OnInit {
 
     this.id = this._ActivatedRoute.snapshot.paramMap.get("id")
     console.log(this.id)
-    this.obterTarefa()
+    
 
     this.cadastroForm = new FormGroup({
-      titulo: new FormControl(this.tarefa.titulo),
-      dataCriacao: new FormControl(this.tarefa.dataCriacao),
-      dataConclusao: new FormControl(this.tarefa.dataConclusao),
-      prioridade: new FormControl(this.tarefa.prioridade),
-      percentual: new FormControl(this.tarefa.percentual)
+      titulo: new FormControl(),
+      dataCriacao: new FormControl(),
+      dataConclusao: new FormControl(),
+      prioridade: new FormControl(),
+      percentual: new FormControl()
+    })
+
+    this.carregarTarefa();
+  }
+
+
+  carregarTarefa(){
+    this.servico.obterTarefa(this.id).subscribe((tarefa : TarefaDetailsViewModel) => {
+      this.carregarFormulario(tarefa)
     })
   }
 
   editarTarefa(){
     this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
-    this.servico.atualizarTarefa(this.tarefa)
+    //this.servico.atualizarTarefa(this.tarefa)
 
     this.router.navigate(['tarefa/listar'])
 
-  }
-
-  obterTarefa(){
-    this.tarefa = this.servico.obterTarefa(this.id)
   }
 
   cancelar(){
     this.router.navigate(['tarefa/listar'])
+  }
+
+  carregarFormulario(tarefa :TarefaDetailsViewModel){
+      this.cadastroForm = new FormGroup({
+        titulo: new FormControl(tarefa.titulo),
+        dataCriacao: new FormControl(tarefa.dataCriacao.toLocaleDateString().split('/').reverse().join('-')),
+        dataConclusao: new FormControl(tarefa.dataConclusao.toString()=== ''? '' : tarefa.dataConclusao.toLocaleDateString().split('/').reverse().join('-')),
+        percentual: new FormControl(tarefa.percentual),
+        prioridade: new FormControl(tarefa.prioridade)
+      })
   }
 
 }
