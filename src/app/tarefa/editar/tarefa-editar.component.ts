@@ -34,9 +34,8 @@ export class TarefaEditarComponent implements OnInit {
     this.prioridades = Object.keys(this.tipos).filter(t => !isNaN(Number(t)))
 
     this.id = this._ActivatedRoute.snapshot.paramMap.get("id")
-    console.log(this.id)
     
-
+  
     this.cadastroForm = new FormGroup({
       titulo: new FormControl(),
       dataCriacao: new FormControl(),
@@ -57,7 +56,10 @@ export class TarefaEditarComponent implements OnInit {
 
   editarTarefa(){
     this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
-    //this.servico.atualizarTarefa(this.tarefa)
+    this.tarefa.id = this.id
+    this.servico.atualizarTarefa(this.tarefa).subscribe(()=>[
+      this.router.navigate(['tarefa/listar'])
+    ])
 
     this.router.navigate(['tarefa/listar'])
 
@@ -70,8 +72,8 @@ export class TarefaEditarComponent implements OnInit {
   carregarFormulario(tarefa :TarefaDetailsViewModel){
       this.cadastroForm = new FormGroup({
         titulo: new FormControl(tarefa.titulo),
-        dataCriacao: new FormControl(tarefa.dataCriacao.toLocaleDateString().split('/').reverse().join('-')),
-        dataConclusao: new FormControl(tarefa.dataConclusao.toString()=== ''? '' : tarefa.dataConclusao.toLocaleDateString().split('/').reverse().join('-')),
+        dataCriacao: new FormControl(tarefa.dataCriacao.toLocaleString().split('/').reverse().join('-')),
+        dataConclusao: new FormControl(tarefa.dataConclusao.toString()=== ''? '' : tarefa.dataConclusao.toLocaleString().split('/').reverse().join('-')),
         percentual: new FormControl(tarefa.percentual),
         prioridade: new FormControl(tarefa.prioridade)
       })

@@ -28,11 +28,6 @@ export class TarefaListarComponent implements OnInit {
       })
   }
 
-  convertePrioridade(prioridade: number) : string{
-
-   return prioridadeType[prioridade]
-
-  }
 
   formatarData(data:Date):string{
 

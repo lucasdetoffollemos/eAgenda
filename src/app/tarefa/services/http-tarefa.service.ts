@@ -14,8 +14,7 @@ export class HttpTarefaService implements IHttpTarefaService{
 
   constructor(private http: HttpClient) { }
 
-
-  apiUrl = "http://localhost:37942/api/tarefa"
+  apiUrl = "https://localhost:44396/api/tarefa"
 
   adicionarTarefa(tarefa: TarefaCreateViewModel): Observable<TarefaCreateViewModel> {
     return this.http.post<TarefaCreateViewModel>(this.apiUrl, tarefa)
@@ -26,11 +25,13 @@ export class HttpTarefaService implements IHttpTarefaService{
   }
 
   obterTarefa(tarefaId: number): Observable<TarefaDetailsViewModel> {
+
     return this.http.get<TarefaDetailsViewModel>(this.apiUrl+"/"+tarefaId)
   }
-  
 
-
-
+  atualizarTarefa(tarefa: TarefaEditViewModel): Observable<TarefaEditViewModel> {
+    console.log("Atualizar Tarefa " + tarefa.id)
+    return this.http.put<TarefaEditViewModel>(this.apiUrl + "/" + tarefa.id, tarefa)
+  }
 
 }
