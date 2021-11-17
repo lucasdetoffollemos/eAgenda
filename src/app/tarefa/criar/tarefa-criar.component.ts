@@ -39,11 +39,15 @@ export class TarefaCriarComponent implements OnInit {
   adicionarTarefa(){
    
     this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
-    this.servico.adicionarTarefa(this.tarefa).subscribe((tarefa) => console.log(tarefa))
+    this.servico.adicionarTarefa(this.tarefa).subscribe(() => {
+      this.router.navigateByUrl('/', {skipLocationChange: true})
+      .then(()=>{
+        this.router.navigate(['tarefa/listar'])
+      }).catch(erro => erro)
+    })
 
     this.cadastroForm.reset()
 
-    this.router.navigate(['tarefa/listar'])
   }
   
 

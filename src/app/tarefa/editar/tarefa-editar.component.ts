@@ -57,11 +57,14 @@ export class TarefaEditarComponent implements OnInit {
   editarTarefa(){
     this.tarefa = Object.assign({}, this.tarefa, this.cadastroForm.value)
     this.tarefa.id = this.id
-    this.servico.atualizarTarefa(this.tarefa).subscribe(()=>[
-      this.router.navigate(['tarefa/listar'])
-    ])
+    this.servico.atualizarTarefa(this.tarefa).subscribe(() => {
+      this.router.navigateByUrl('/', {skipLocationChange: true})
+      .then(()=>{
+        this.router.navigate(['tarefa/listar'])
+      }).catch(erro => erro)
+    })
 
-    this.router.navigate(['tarefa/listar'])
+    
 
   }
 

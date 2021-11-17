@@ -13,6 +13,7 @@ import { TarefaDetailsViewModel } from 'src/app/shared/viewModels/Tarefa/TarefaD
 export class HttpTarefaService implements IHttpTarefaService{
 
   constructor(private http: HttpClient) { }
+  
 
   apiUrl = "https://localhost:44396/api/tarefa"
 
@@ -30,8 +31,12 @@ export class HttpTarefaService implements IHttpTarefaService{
   }
 
   atualizarTarefa(tarefa: TarefaEditViewModel): Observable<TarefaEditViewModel> {
-    console.log("Atualizar Tarefa " + tarefa.id)
+    
     return this.http.put<TarefaEditViewModel>(this.apiUrl + "/" + tarefa.id, tarefa)
+  }
+
+  excluirTarefa(tarefaId: number): Observable<number> {
+    return this.http.delete<number>(this.apiUrl + "/" + tarefaId)
   }
 
 }

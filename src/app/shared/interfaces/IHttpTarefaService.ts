@@ -12,4 +12,6 @@ export interface IHttpTarefaService{
     obterTarefa(tarefaId : number): Observable<TarefaDetailsViewModel>
 
     atualizarTarefa(tarefa : TarefaEditViewModel): Observable<TarefaEditViewModel>
+
+    excluirTarefa(tarefaId: number): Observable<number>
 }
